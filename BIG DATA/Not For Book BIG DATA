@@ -1,0 +1,70 @@
+các công cụ tìm thấy trong cuốn sách 
+Hadoop, HBase, MongoDB, Cassandra, Dynamo, RabbitMQ, Storm, Thrift, Riak, ElephantDB
+
+Hadoop, for example, can parallelize large-scale batch computations on very large amounts of data, but the computations have high latency. You don’t use Hadoop for anything where you need low-latency results. 
+
+NoSQL databases like Cassandra achieve their scalability by offering you a much more limited data model than you’re used to with something like SQL. Squeezing your application into these limited data models can be very complex. And because the databases are mutable, they’re not human-fault tolerant.
+--
+Các thuộc tính của 1 hệ thông big data
+1. Độ bền và chịu lỗi
+	Hệ thống xây dựng phải chịu được các lỗi do con người, có cơ chế kiểm tra và phục hồi khi có lỗi mà ko làm ảnh hưởng đến database 
+2. Low latency reads and updates - đọc và cập nhất có độ trễ thấp 
+	Tuỳ theo từng ứng dùng mà yêu cầu độ trễ khác nhau, có những ứng dụng từ vài đến vài trăm milliseconds, có những yêu cầu về ứng dụng cập nhật ngay lập tức, cũng có những ứng dụng vài giờ là ổn. Bất kể thế nào thì ứng dụng cũng phải có khả năng đạt độ trễ thấp nhất. 
+3. Khả năng mở rộng (Scalability)
+	Là khả năng duy trì được hiệu xuất khi dữ liệu tăng hoặc tải bằng cách tăng thêm tài nguyên của hệ thống. 
+	Kiến trúc Lambda có thể mở rộng theo chiều ngang trên cả các lớp trên stack của hệ thống: Việc thực hiện này bằng cách tăng số lượng máy tính lên.
+4. Tổng quát hoá 
+	Nó là hệ thống có thể hỗ trợ hàng loạt các ứng dụng. Nó có thể xây dựng để phân tích dữ liệu tài chính, dữ liệu tracking website data, social media analytics, mạng xã hội hay bất cứ thứ gì 
+5. Có thể mở rộng (Extensibility)
+	Khẳ năng mở rộng hệ thống cho phép chức năng mới được phát triển với chi phí thấp nhất 
+	Thông thường, một tính năng mới hoặc thay đổi đối với một tính năng hiện có yêu cầu di chuyển dữ liệu cũ sang định dạng mới. Một phần của việc làm cho một hệ thống mở rộng là làm cho nó dễ dàng thực hiện di chuyển quy mô lớn. Có thể thực hiện các cuộc di cư lớn một cách nhanh chóng và dễ dàng là cốt lõi đối với cách tiếp cận mà bạn sẽ học.
+6. Ad hoc queries
+	Có thể thực hiện các truy vấn ad hoc trên dữ liệu của bạn là vô cùng quan trọng. Gần như mọi tập dữ liệu lớn đều có giá trị không lường trước được. Việc có thể khai thác một tập dữ liệu tùy ý mang lại cơ hội tối ưu hóa doanh nghiệp và các ứng dụng mới. Cuối cùng, bạn có thể khám phá những điều thú vị với dữ liệu của mình trừ khi bạn có thể hỏi những câu hỏi tùy ý về nó. Bạn sẽ học cách thực hiện các truy vấn ad hoc trong chương 6 và 7 khi chúng ta thảo luận về xử lý hàng loạt.
+7. Minimal maintenance
+	Bảo trì là công việc cần thiết để giữ cho một hệ thống hoạt động trơn tru. Điều này bao gồm dự đoán khi nào cần thêm máy vào quy mô, duy trì quá trình và chạy và gỡ lỗi bất cứ điều gì sai trong sản xuất.
+ 
+	Một phần quan trọng của việc giảm thiểu bảo trì là chọn các thành phần có độ phức tạp thực hiện càng ít càng tốt. Bạn muốn dựa vào các thành phần có cơ chế đơn giản bên dưới chúng. Đặc biệt, cơ sở dữ liệu phân tán có xu hướng có nội bộ rất phức tạp. Một hệ thống càng phức tạp, càng có nhiều khả năng xảy ra sự cố và bạn càng cần phải hiểu hệ thống để gỡ lỗi và điều chỉnh nó.
+ 	
+	Bạn chống lại sự phức tạp khi thực hiện bằng cách dựa vào các thuật toán đơn giản và các thành phần đơn giản. Một mẹo được sử dụng trong Kiến trúc Lambda là đẩy sự phức tạp ra khỏi các thành phần cốt lõi và thành các phần của hệ thống có đầu ra bị loại bỏ sau vài giờ. Các thành phần phức tạp nhất được sử dụng, như đọc / ghi cơ sở dữ liệu phân tán, nằm trong lớp này nơi đầu ra cuối cùng bị loại bỏ. Chúng tôi sẽ thảo luận sâu về kỹ thuật này khi chúng ta thảo luận về lớp tốc độ trong chương 12.
+
+ 8. Debuggability
+ 	Một hệ thống Dữ liệu lớn phải cung cấp thông tin cần thiết để debug hệ thống khi có sự cố. Điều quan trọng là có thể theo dõi, đối với từng giá trị trong hệ thống, chính xác điều gì đã khiến nó có giá trị đó.
+  
+	Khả năng gỡ lỗi ngay lập tức được thực hiện trong Kiến trúc Lambda thông qua tính chất chức năng của lớp lô và bằng cách sử dụng thuật toán tính toán lại khi có thể. Đạt được tất cả các tính chất này cùng nhau trong một hệ thống có vẻ như rất khó khăn thử thách. 
+	
+	Nhưng bằng cách bắt đầu từ các nguyên tắc đầu tiên, như Kiến trúc Lambda đã làm, các thuộc tính này xuất hiện tự nhiên từ thiết kế hệ thống kết quả. Trước khi lặn vào Kiến trúc Lambda, chúng ta hãy nhìn vào truyền thống kiến trúc-đặc trưng bởi một sự phụ thuộc vào gia tăng tính toán và lý do tại sao họ không thể đáp ứng rất nhiều các tài sản.
+
+** Về random write 
+	When you write two blocks that are next to each-other on disk, you have a sequential write.
+
+	When you write two blocks that are located far away from eachother on disk, you have random writes.
+
+	With a spinning hard disk, the second pattern is much slower (can be magnitudes), because the head has to be moved around to the new position.
+
+	Database technology is (or has been, maybe not that important with SSD anymore) to a large part about optimizing disk access patterns. So what you often see, for example, is trading direct updates of data in their on-disk location (random access) versus writing to a transaction log (sequential access). Makes it more complicated and time-consuming to reconstruct the actual value, but makes for much faster commits (and you have checkpoints to eventually consolidate the logs that build up).
+=====
+Lambda Architecture
+
+	1. Batch Layer
+		
+		Batch view = function (all data)
+		Query = function (batch view)
+
+		- Summary trước dữ liệu theo từng view, gọi là các batch view
+		All data -> Batch Layer -> Batch View 1, batch view 2, batch view 3
+		- Việc chạy các batch view cần thực hiện xong xong, thường dùng HADOOP
+		- Example : 
+			function runBatchLayer():
+				while (true):
+					recomputeBatchViews()
+
+	2. Serving Layer
+		Serving layer thực hiện các bước: 
+			Step1. Random access to batch views
+			Step2. Update by batch layer
+
+		- Khi Batch Layer xong, bước tiếp theo là cần load view ở somewhere vì vậy cần phải được queried data đã có từ các batch views.
+		Đây là nhiệm vụ của Serving layer
+		- Có thể dùng ElephantDB trong trường hợp này
+	
+	3. Speed Layer
